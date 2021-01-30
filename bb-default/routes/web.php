@@ -12,9 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+if (env('APP_ENV') !== 'local') {
+    \URL::forceScheme('https');
+}
 
 Route::get('/', function () {
     return view('home');
+});
+Route::get('/book', function () {
+    return view('book');
 });
 
 Auth::routes();

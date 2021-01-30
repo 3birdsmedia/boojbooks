@@ -6,7 +6,7 @@
                     <div class="card-header">{{ message }}</div>
                         <div class="card-body">
                         <input type="text" v-model="searchTerm">
-                        <div class="btn" v-on:click="getBooks">SEARCH</div>
+                        <div class="btn btn-primary" v-on:click="getBooks">SEARCH</div>
                         <div class="results">
                             <div v-show="loading" class="spinner-border text-center" role="status">
                                 <span class="visually-hidden">&nbsp;</span>
@@ -14,7 +14,7 @@
                             <ul class="list-unstyled">
                                 <li v-for='book in books' class="row">
                                 <div class="col-2">
-                                    <button class="btn btn-success" v-on:click="addToList(book.id)">+</button>
+                                    <button class="btn btn-success" v-on:click="addToList(book, book.id)">+</button>
                                 </div>
                                 <div class="col-10">
                                     <div class="font-weight-bold title">{{ book.volumeInfo.title }}</div>
@@ -38,8 +38,8 @@
 </template>
 <style lang="scss" scoped>
     li {
-        border-bottom: 1px solid var(--purple);
-        padding: 1em;
+        border-bottom: 1px solid #ccc;
+        padding: 0.5em;
     }
 </style>
 <script>
@@ -68,8 +68,9 @@
                 })
 
             },
-            addToList: (id) => {
+            addToList (book, id)  {
                 console.log("Added "+id+" to list");
+                this.$store.commit("addBook", book);
             }
         },
         mounted() {

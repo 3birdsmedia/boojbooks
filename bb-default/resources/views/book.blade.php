@@ -17,14 +17,7 @@
                     {{ __('You are logged in!') }}
                 </div> -->
                 <div class="col-md-6">
-                    <h1>Booj Books</h1>
-                    <div> The best place to keep track of your books</div>
-                    <search-component />
-                </div>
-                <div class="col-md-6">
-                    <h1>My Books</h1>
-                    <div>Here is are my books i'd like to read</div>
-                    <booklist-component />
+                    <book-component book-id="{{ Request::get('id') }}"  />
                 </div>
 
             </div>
